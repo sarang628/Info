@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.example.torang_core.data.model.Restaurant" />
+
+        <variable
+            name="hoursOfOperations"
+            type="java.util.ArrayList&lt;com.example.torang_core.data.model.HoursOfOperation&gt;" />
+
+        <variable
+            name="menus"
+            type="java.util.ArrayList&lt;com.example.torang_core.data.model.Menu&gt;" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorSecondaryLight"
+            tools:context=".RestaurantInfoFragment">
+
+            <TextView
+                android:id="@+id/tv_restaurant_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:text="@{restaurant.restaurant_name}"
+                android:textColor="@color/colorSecondary"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="McDonald's" />
+
+            <RatingBar
+                android:id="@+id/rb_restaurant"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:progressTint="@color/colorSecondary"
+                android:rating="@{restaurant.rating}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_name"
+                tools:rating="3.5" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingStart="8dp"
+                android:text="Address"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rb_restaurant" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:text="@{restaurant.address}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_restaurant_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:text="캘리포니아 마운틴 뷰" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="8dp"
+                android:text="Menu"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="8dp"
+                android:text="Tel"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="8dp"
+                android:text="Website"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tel" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="8dp"
+                android:text="Open Hour"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_website" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="70dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_monday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="MON:"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="MON:" />
+
+
+                <TextView
+                    android:id="@+id/tv_open_hour_monday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{hoursOfOperations.size() > 0 ? hoursOfOperations.get(0).operatingHour() : null}"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_tuesday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="TUE:"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 1 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_monday"
+                    tools:text="TUE:" />
+
+                <TextView
+                    android:id="@+id/tv_open_hour_tuesday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{hoursOfOperations.size() > 1 ? hoursOfOperations.get(1).operatingHour() : null}"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 1 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_open_hour_monday" />
+
+
+                <TextView
+                    android:id="@+id/tv_wednesday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="WED:"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 2 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tuesday"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:text="WED:" />
+
+                <TextView
+                    android:id="@+id/tv_open_hour_wednesday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{hoursOfOperations.size() > 2 ? hoursOfOperations.get(2).operatingHour() : null}"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 2 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_open_hour_tuesday" />
+
+                <TextView
+                    android:id="@+id/tv_thursday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="THU:"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 3 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_wednesday"
+                    tools:text="THU:" />
+
+                <TextView
+                    android:id="@+id/tv_open_hour_thursday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{hoursOfOperations.size() > 3 ? hoursOfOperations.get(3).operatingHour() : null}"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 3 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_open_hour_wednesday" />
+
+                <TextView
+                    android:id="@+id/tv_friday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="FRI:"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 4 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_thursday"
+                    tools:text="FRI:" />
+
+                <TextView
+                    android:id="@+id/tv_open_hour_friday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{hoursOfOperations.size() > 4 ? hoursOfOperations.get(4).operatingHour() : null}"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 4 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_open_hour_thursday" />
+
+                <TextView
+                    android:id="@+id/tv_saturday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SAT:"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 5 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_friday"
+                    tools:text="SAT:" />
+
+                <TextView
+                    android:id="@+id/tv_open_hour_saturday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{hoursOfOperations.size() > 5 ? hoursOfOperations.get(5).operatingHour() : null}"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 5 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_open_hour_friday" />
+
+                <TextView
+                    android:id="@+id/tv_sunday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SUN:"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 6 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_saturday"
+                    tools:text="SUN:" />
+
+                <TextView
+                    android:id="@+id/tv_open_hour_sunday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{hoursOfOperations.size() > 6 ? hoursOfOperations.get(6).operatingHour() : null}"
+                    android:textSize="20sp"
+                    android:visibility="@{hoursOfOperations.size() > 6 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_open_hour_saturday" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_tel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:text="@{restaurant.tel}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                tools:text="010-1234-5678" />
+
+            <TextView
+                android:id="@+id/tv_website"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:text="@{restaurant.website}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                tools:text="www.google.com" />
+
+            <LinearLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:text="@{menus.size() > 0 ? menus.get(0).menu_name : null}"
+                    android:textSize="20sp"
+                    tools:text="빅맥" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:text="@{menus.size() > 1 ? menus.get(1).menu_name : null}"
+                    android:textSize="20sp"
+                    tools:text="베이컨 토마토 디럭스 버거" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:text="@{menus.size() > 2 ? menus.get(2).menu_name : null}"
+                    android:textSize="20sp"
+                    tools:text="맥치킨 모짜렐라" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:text="@{menus.size() > 3 ? menus.get(3).menu_name : null}"
+                    android:textSize="20sp"
+                    tools:text="1955 버거" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:text="@{menus.size() > 4 ? menus.get(4).menu_name : null}"
+                    android:textSize="20sp"
+                    tools:text="슈슈버거" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

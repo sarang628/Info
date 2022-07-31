@@ -1,0 +1,10 @@
+rootProject.name = "My Application"
+include ':app'
+
+include ':torang_core'
+project(':torang_core').projectDir = new File('../../../Core/TorangCore/torang_core')
+include ':TorangRepository'
+project(':TorangRepository').projectDir = new File('../../../Repository/TorangRepository')
+
+include ':screen_info'
+project(':screen_info').projectDir = new File('../../../Screens/Info/screen_info')
